@@ -18,3 +18,17 @@ after_success:
     - docker push laithharb/multi-nginx
     - docker push laithharb/multi-worker
     - docker push laithharb/multi-server
+deploy:
+    edge: true
+    region: us-east-1
+    app: multi-docker
+    env: MultiDocker-env-1
+    bucket_name: elasticbeanstalk-us-east-1-861156198565
+    bucket_path: docker-multi
+    on:
+        branch: master
+    provider: elasticbeanstalk
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+
+    
