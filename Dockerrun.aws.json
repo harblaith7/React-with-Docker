@@ -5,24 +5,28 @@
             "name": "client",
             "image": "laithharb/multi-client",
             "hostname": "client",
+            "memory": 128,
             "essential": false
         },
         {
             "name": "server",
             "image": "laithharb/multi-server",
             "hostname": "api",
+            "memory": 128,
             "essential": false
         },
         {
             "name": "worker",
             "image": "laithharb/multi-worker",
             "hostname": "worker",
+            "memory": 128,
             "essential": false
         },
         {
             "name": "nginx",
             "image": "laithharb/multi-nginx",
             "hostname": "nginx",
+            "memory": 128,
             "essential": true,
             "portMappings": [
                 {
