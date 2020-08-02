@@ -1,0 +1,20 @@
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t laithharb/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+    - docker run -e CI=true laithharb/react-test npm test
+
+after_success:
+    - docker build -t laithharb/multi-client ./client
+    - docker build -t laithharb/multi-nginx ./nginx
+    - docker build -t laithharb/multi-server ./server
+    - docker build -t laithharb/multi-worker ./worker
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    - docker push laithharb/multi-client
+    - docker push laithharb/multi-nginx
+    - docker push laithharb/multi-worker
+    - docker push laithharb/multi-server
